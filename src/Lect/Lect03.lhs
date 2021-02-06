@@ -43,7 +43,7 @@ Examples:
 > c2f c = c * 9/5 + 32
  
 
--- Pattern matching
+-- Pattern matching --
 
 We can provide multiple alternative expressions to be evaluated when a function
 is called, which are differentiated based on *patterns* that are matched against
@@ -55,11 +55,12 @@ first pattern to match has its corresponding expression evaluated.
 > not' False = True
 
 
+
 A catch-all pattern, where a variable is specified instead of a data value, can 
 be used to match parameters not specified in earlier patterns.
 
 > fib :: Integer -> Integer
-> fib 0 = 1
+> fib 0 = 0
 > fib 1 = 1
 > fib n = fib (n-1) + fib (n-2)
 
@@ -78,11 +79,12 @@ Patterns can also be used to "deconstruct" values. E.g., for tuples:
 > fst' (x,_) = x
 >
 >
-> distanceFromOrigin :: (Floating a, Eq a) => (a,a) -> a
-> distanceFromOrigin (x,0) = abs x
-> distanceFromOrigin (0,y) = abs y
-> distanceFromOrigin (x,y) = sqrt (x^2 + y^2)
+> distanceFromOrigin :: (Floating a, Eq a) => (a,a) -> (a,a) ->a
+> distanceFromOrigin (x1,y1) (x2,y2) = sqrt ((x1-x2)^2 + (y1-y2)^2)
 >
+> sndOf5 :: (a,b,c,d,e) -> b
+> sndOf5 (_,b,_,_,_) = b
+> 
 >
 > mapTup :: (a -> b) -> (a,a) -> (b,b)
 > mapTup f (x,y) = (f x, f y)
