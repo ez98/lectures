@@ -102,16 +102,17 @@ equations in a function definition. The `otherwise` keyword (which is just
 >
 >
 > c2h :: (Floating a, Ord a) => a -> String
-> c2h c | c2f c < 0   = "too cold"
->       | c2f c > 100 = "too hot"
->       | otherwise   = "tolerable"
->
->
+> c2h c | c2f c < 0 = "that's cold!"
+>       | c2f c > 95 = "that's hot!"
+>       | otherwise = "tolerable"
 > quadRoots :: (Floating a, Ord a) => a -> a -> a -> (a, a)
 > quadRoots a b c 
 >   | discriminant a b c >= 0 = ((-b + sqrt (discriminant a b c)) / (2*a),
 >                                (-b - sqrt (discriminant a b c)) / (2*a))
 >   | otherwise = error "No real roots"
+>   where disc a b c = b^2 - 4*a*c
+>                  d = disc a b c 
+>             sqrt_d = sqrt d
 
 
 -- `where` clause
